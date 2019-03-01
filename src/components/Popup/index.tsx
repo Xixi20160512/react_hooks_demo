@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Container } from "@src/components/Base/StyledComponent";
 import { useTaskContext } from "../Task/taskManger";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 
 const Popup = styled(Container)`
@@ -16,21 +16,8 @@ const PopupContent = styled(Container)<{ show?: boolean }>`
   position: absolute;
   top: calc(100% + ${angleSize}px);
   left: 0;
-  padding: 10px;
-  opacity: 0;
-  height: 0;
-
-  transition: opacity .2s 0s,transform .2s 0s, height 0s 0s ease-in;
-
-  ${props => {
-    if(props.show) {
-      return `
-        transform: translateY(10px);
-        opacity: 1;
-        height: auto;
-      `
-    }
-  }}
+  display: ${props => props.show ? 'block' : 'none'};
+  z-index: 999;
 
   ::after {
     display: block;
@@ -70,7 +57,7 @@ export default ({ children, popContent }) => {
       <div onClick={() => setPopup(!popup)}>
         {children}
       </div>
-      <PopupContent show={popup}>
+      <PopupContent show={popup} pd="0 4px">
         {popContent}
       </PopupContent>
     </Popup>

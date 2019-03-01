@@ -6,9 +6,9 @@ import Resource from './resource';
 export default () => {
   return (
     <TaskManger>
-      <Wrapper main-axis="flex-start">
+      <Wrapper mainAxis="flex-start">
         <Avatar mg="0 12px"/>
-        <Column cross-axis="flex-start" main-axis="space-between">
+        <Column crossAxis="flex-start" mainAxis="space-between">
             <Row>
               <span>www.baidunotgood.com</span>
               <span>| idle</span>
@@ -28,9 +28,7 @@ const Wrapper = styled(Row)`
   border-radius: 5px;
   height: 90px;
   position: relative;
-  max-width: 1024px;
-  margin: 0 auto;
-  width: 90%;
+  width: 100%;
 `
 
 const Avatar = styled(Container)`

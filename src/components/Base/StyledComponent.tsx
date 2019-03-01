@@ -16,25 +16,28 @@ interface FlexProp {
    * @type {string}
    * @memberof FlexProp
    */
-  'main-axis'?: mainAxisFlex,
+  'mainAxis'?: mainAxisFlex,
   /**
    * means the cross Axis of flex-box
    *
    * @type {string}
    * @memberof FlexProp
    */
-  'cross-axis'?: crossAxisFlex
+  'crossAxis'?: crossAxisFlex
 }
 
-export const Container = styled.div<{ pd?: string, mg?: string, height?: string, width?: string }>`
+export const Container = styled.div<{ ab?: boolean, pd?: string, mg?: string, height?: string, width?: string }>`
 
   padding: ${({ pd }) => pd ||  0};
   margin: ${({ mg }) => mg || 0};
-  ${({ height, width }) => {
-    return `
-      height: ${height};
-      width: ${width}
-    `
+
+  ${({ height, width, ab }) => {
+    let style = ''
+    if(height) style += `height: ${height};`
+    if(width) style += `width: ${width};`
+    if(ab) style += `position: absolute;`
+
+    return style
   }}
 `
 
@@ -42,14 +45,14 @@ export const Container = styled.div<{ pd?: string, mg?: string, height?: string,
 export const Row = styled(Container)<FlexProp>`
   display: flex;
   flex-direction: row;
-  justify-content: ${props => props['main-axis'] || 'center'};
-  align-items: ${props => props['cross-axis'] || 'center'};
+  justify-content: ${props => props['mainAxis'] || 'center'};
+  align-items: ${props => props['crossAxis'] || 'center'};
 `
 
 export const Column = styled(Container)<FlexProp>`
   display: flex;
   flex-direction: column;
-  justify-content: ${props => props['main-axis'] || 'center'};
-  align-items: ${props => props['cross-axis'] || 'center'};
+  justify-content: ${props => props['mainAxis'] || 'center'};
+  align-items: ${props => props['crossAxis'] || 'center'};
 `
 

@@ -13,17 +13,19 @@ export default function Resource() {
 
   let { popup, setPopup, tasks, setTasks } = useTaskContext()
 
+  let inputRef: HTMLInputElement;
+
   const renderPopContent = (
     <>
-      <Column width="378px" cross-axis="stretch">
+      <Column width="378px" crossAxis="stretch">
         <p>(separate multiple resources name with commas.)</p> 
-        <input type="text" value={addTexts} onChange={e => setAddTexts(e.target.value)}/>
+        <input type="text" ref={ref => inputRef = ref} onChange={e => setAddTexts(e.target.value)}/>
         <Row>
           <Container mg="0 6px">
             <button onClick={onAdd}>add</button>
           </Container>
           <Container mg="0 6px">
-            <button onClick={() => setAddTexts('')}>clear</button>
+            <button onClick={onClear}>clear</button>
           </Container>
         </Row>
       </Column>
@@ -54,8 +56,14 @@ export default function Resource() {
         setPopup(false)
         setTasks(Array.from(textArr))
         setAddTexts('')
+        inputRef.value = ''
       }
     }
+  }
+
+  function onClear() {
+    inputRef.value = ''
+    setAddTexts('')
   }
 
   return (
