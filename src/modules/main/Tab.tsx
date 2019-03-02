@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container, Row } from "@src/components/Base/StyledComponent";
+import { Row, Text } from "@src/components/Base/StyledComponent";
 import { useState } from "react";
 
 interface TabProp {
@@ -10,11 +10,19 @@ interface TabProp {
 export default ({ tabs }: TabProp) => {
 
   let [ active, setActive ] = useState<string>(tabs[0])
-  
+
   return (
     <Tab crossAxis="flex-end">
       {
-        tabs.map(tab => <TabItem onClick={() => setActive(tab)} active={active === tab} key={tab}>{tab}</TabItem>)
+        tabs.map(tab => (
+          <TabItem
+            onClick={() => setActive(tab)}
+            active={active === tab}
+            key={tab}
+          >
+            <Text size="middle">{tab}</Text>
+          </TabItem>
+        ))
       }
     </Tab>
   )
@@ -34,6 +42,7 @@ const TabItem = styled(Row)<{ active: boolean }>`
   padding: 4px;
   margin-left: 4px;
   cursor: pointer;
+  user-select: none;
   ${props => {
     if(props.active) {
       return `

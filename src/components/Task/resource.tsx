@@ -1,5 +1,5 @@
 
-import { Row, Column, Container } from '@src/components/Base/StyledComponent';
+import { Row, Column, Container, Text } from '@src/components/Base/StyledComponent';
 import Popup from '../Popup';
 import { useTaskContext } from './taskManger';
 import { useState } from 'react';
@@ -18,9 +18,9 @@ export default function Resource() {
   const renderPopContent = (
     <>
       <Column width="378px" crossAxis="stretch">
-        <p>(separate multiple resources name with commas.)</p> 
+        <Text color="dark44" as="p">(separate multiple resources name with commas.)</Text>
         <input type="text" ref={ref => inputRef = ref} onChange={e => setAddTexts(e.target.value)}/>
-        <Row>
+        <Row mg="4px 0">
           <Container mg="0 6px">
             <button onClick={onAdd}>add</button>
           </Container>
@@ -34,13 +34,15 @@ export default function Resource() {
 
   const TaskItem = ({ value }: Resource) => (
     <>
-      <button onClick={() => onDelete(value)}>x</button>
+      <Container mg="0 12px">
+        <button onClick={() => onDelete(value)}>x</button>
+      </Container>
       <span>{value}</span>
     </>
   )
 
   function onDelete(v: string) {
-    alert('Please make sure what you are doing!')
+    alert('Please make sure you know what you are doing!')
     let _deleteIndex: number = tasks.findIndex(task => task === v)
     tasks.splice(_deleteIndex, 1)
     setTasks(tasks.concat([]))
@@ -71,12 +73,15 @@ export default function Resource() {
       <Popup popContent={renderPopContent}>
         <span onClick={() => setPopup(!popup)}>+ Specify Resources</span>
       </Popup>
-      <span>| Resources: </span>
-      {
-        tasks.length === 0
-        ? <span>--</span>
-        : tasks.map(v => <TaskItem key={v} value={v}/>)
-      }
+      <Row mainAxis="flex-start" height="30px">
+        <Container mg='0 7px'> | </Container>
+        <span>Resources: </span>
+        {
+          tasks.length === 0
+          ? <span>--</span>
+          : tasks.map(v => <TaskItem key={v} value={v}/>)
+        }
+      </Row>
     </Row>
   )
 }

@@ -1,13 +1,6 @@
 import styled from 'styled-components';
-
 type mainAxisFlex = 'space-between' | 'flex-start' | 'flex-end' | 'center'
-
 type crossAxisFlex = 'space-between' | 'flex-start' | 'flex-end' | 'center' | 'stretch'
-
-// interface ContainerProp { 
-//   pd?: String, 
-//   mg?: String
-// }
 
 interface FlexProp {
   /**
@@ -26,21 +19,39 @@ interface FlexProp {
   'crossAxis'?: crossAxisFlex
 }
 
-export const Container = styled.div<{ ab?: boolean, pd?: string, mg?: string, height?: string, width?: string }>`
+interface TextProp {
+  /**
+   * font-size prop
+   *
+   * @type {string}
+   * @memberof TextProp
+   */
+  size?: string,
+
+  /**
+   * font color
+   *
+   * @type {string}
+   * @memberof TextProp
+   */
+  color?: string
+}
+
+export const Container = styled.div<{ bg?: string, ab?: boolean, pd?: string, mg?: string, height?: string, width?: string }>`
 
   padding: ${({ pd }) => pd ||  0};
   margin: ${({ mg }) => mg || 0};
 
-  ${({ height, width, ab }) => {
+  ${({ height, width, ab, bg }) => {
     let style = ''
     if(height) style += `height: ${height};`
     if(width) style += `width: ${width};`
     if(ab) style += `position: absolute;`
+    if(bg) style += `background: ${bg}`
 
     return style
   }}
 `
-
 
 export const Row = styled(Container)<FlexProp>`
   display: flex;
@@ -56,3 +67,7 @@ export const Column = styled(Container)<FlexProp>`
   align-items: ${props => props['crossAxis'] || 'center'};
 `
 
+export const Text = styled.span<TextProp>`
+  font-size: ${props => props.theme.fontSize[props['size']] || props['size'] || 'inherit'};
+  color: ${props => props.theme.fontColor[props['color']] || props['color'] || 'inherit'};
+`
