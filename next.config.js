@@ -4,6 +4,7 @@ const withCss = require('@zeit/next-css')
 module.exports = withCss(withTypescript({
   webpack: (config) => {
     config.resolve.alias = {
+      ...config.resolve.alias,
       '@src': path.resolve('./src'),
     };
     return config

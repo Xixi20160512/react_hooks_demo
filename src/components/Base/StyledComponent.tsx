@@ -53,15 +53,17 @@ export const Container = styled.div<{ bg?: string, ab?: boolean, pd?: string, mg
   }}
 `
 
-export const Row = styled(Container)<FlexProp>`
-  display: flex;
+export const Row = styled(Container).attrs({
+  className: 'display_flex'
+})<FlexProp>`
   flex-direction: row;
   justify-content: ${props => props['mainAxis'] || 'center'};
   align-items: ${props => props['crossAxis'] || 'center'};
 `
 
-export const Column = styled(Container)<FlexProp>`
-  display: flex;
+export const Column = styled(Container).attrs({
+  className: 'display_flex'
+})<FlexProp>`
   flex-direction: column;
   justify-content: ${props => props['mainAxis'] || 'center'};
   align-items: ${props => props['crossAxis'] || 'center'};

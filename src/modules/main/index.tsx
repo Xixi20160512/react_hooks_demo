@@ -5,6 +5,7 @@ import TitleCard from "./TitleCard";
 import Tab from "./Tab";
 import Head from 'next/head';
 import 'normalize.css'
+import '@src/test.css'
 
 export default () => {
 
