@@ -3,91 +3,101 @@ import { Column, Container, Row, Text } from "@src/components/Base/StyledCompone
 import styled from "styled-components";
 import TitleCard from "./TitleCard";
 import Tab from "./Tab";
-import Head from 'next/head';
-import 'normalize.css'
-import '@src/test.css'
+
 
 export default () => {
+  const Head = (
+    <Row mainAxis="flex-end">
+      <Container mg="0 24px">
+        <span>Signed in as &nbsp;</span>
+        <a href="">Member</a>
+      </Container>
+      <a href="">Sign out</a>
+    </Row>
+  )
+
+  const Title = (
+    <Container bg="#4d4d4d" height="40px">
+      <Row height="100%" pd="0 20px" mainAxis="flex-start">
+        <Container mg="0 8px">
+          <Text color="white" size="large">Agents</Text>
+        </Container>
+        <Container mg="0 4px">
+          <button>All</button>
+        </Container>
+        <Container mg="0 4px">
+          <button>Physical</button>
+        </Container>
+        <Container mg="0 4px">
+          <button>Virtual</button>
+        </Container>
+      </Row>
+    </Container>
+  )
+
+  const TaskWrapper = (
+    <TaskContainer width="70%" crossAxis="stretch" mainAxis="flex-start" pd="10px">
+      <Container mg="4px 0">
+        <Task deny />
+      </Container>
+      <Container mg="4px 0">
+        <Task />
+      </Container>
+      <Container mg="4px 0">
+        <Task />
+      </Container>
+      <Container mg="4px 0">
+        <Task deny />
+      </Container>
+    </TaskContainer>
+  )
+
+  const StatusWrapper = (
+    <Column width="30%" pd="8px" crossAxis="stretch" mainAxis="flex-start">
+      <TitleCard title="Summary">
+        <Column crossAxis="stretch">
+          <Row mainAxis="space-between">
+            <Text color="dark66" size="middle">building</Text>
+            <Container width="50%">
+              <Text color="dark44" size="large">2</Text>
+            </Container>
+          </Row>
+          <Row mainAxis="space-between">
+            <Text color="dark66" size="middle">idle</Text>
+            <Container width="50%">
+              <Text color="dark44" size="large">2</Text>
+            </Container>
+          </Row>
+        </Column>
+      </TitleCard>
+      <TitleCard title="History">
+        <Column crossAxis="flex-start">
+          <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
+          <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
+          <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
+          <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
+          <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
+          <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
+          <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
+          <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
+        </Column>
+      </TitleCard>
+    </Column>
+  )
 
 
   return (
     <Wrapper>
-      <Head>
-
-      </Head>
-      <Row mainAxis="flex-end">
-        <Container mg="0 24px">
-          <span>Signed in as &nbsp;</span>
-          <a href="">Member</a>
-        </Container>
-        <a href="">Sign out</a>
-      </Row>
+      {Head}
       <Box height="700px" mg="40px 0">
         <Logo>
           <Text size="giant">Cruise</Text>
         </Logo>
-        <Tab tabs={['DASHBOARD', 'MY CRUISE', "AGENT", 'HELP']}/>
-        <Title height="40px">
-          <Row height="100%" pd="0 20px" mainAxis="flex-start">
-            <Container mg="0 8px">
-              <Text color="white" size="large">Agents</Text>
-            </Container>
-            <Container mg="0 4px">
-              <button>All</button>
-            </Container>
-            <Container mg="0 4px">
-              <button>Physical</button>
-            </Container>
-            <Container mg="0 4px">
-              <button>Virtual</button>
-            </Container>
-          </Row>
-        </Title>
+        <Tab tabs={['DASHBOARD', 'MY CRUISE', "AGENT", 'HELP']} />
+        {Title}
         <Row crossAxis="stretch" height="660px">
-          <TaskContainer width="70%" crossAxis="stretch" mainAxis="flex-start" pd="10px">
-            <Container mg="4px 0">
-              <Task deny/>
-            </Container>
-            <Container mg="4px 0">
-              <Task />
-            </Container>
-            <Container mg="4px 0">
-              <Task />
-            </Container>
-            <Container mg="4px 0">
-              <Task deny/>
-            </Container>
-          </TaskContainer>
-          <Column width="30%" pd="8px" crossAxis="stretch" mainAxis="flex-start">
-            <TitleCard title="Summary">
-              <Column crossAxis="stretch">
-                <Row mainAxis="space-between">
-                  <Text color="dark66" size="middle">building</Text>
-                  <Container width="50%">
-                    <Text color="dark44" size="large">2</Text>
-                  </Container>
-                </Row>
-                <Row mainAxis="space-between">
-                  <Text color="dark66" size="middle">idle</Text>
-                  <Container width="50%">
-                    <Text color="dark44" size="large">2</Text>
-                  </Container>
-                </Row>
-              </Column>
-            </TitleCard>
-            <TitleCard title="History">
-              <Column crossAxis="flex-start">
-                <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
-                <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
-                <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
-                <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
-                <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
-                <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
-                <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
-                <Text color="dark88" size="small">bjstdmngbgr02/Acceptance_test</Text>
-              </Column>
-            </TitleCard>
-          </Column>
+          {TaskWrapper}
+          {StatusWrapper}
         </Row>
       </Box>
     </Wrapper>
@@ -103,9 +113,6 @@ const Wrapper = styled(Container)`
 const Box = styled(Container)`
   border: 2px solid #233333;
   position:relative;
-`
-const Title = styled(Container)`
-  background-color: #4d4d4d;
 `
 
 const TaskContainer = styled(Column)`
