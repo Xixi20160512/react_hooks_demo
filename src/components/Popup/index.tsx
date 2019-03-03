@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Container } from "@src/components/Base/StyledComponent";
-import { useTaskContext } from "../Task/taskManger";
+import { Container } from "../Base/StyledComponent";
 import React, { useEffect } from "react";
 
 
@@ -33,13 +32,11 @@ const PopupContent = styled(Container)<{ show?: boolean }>`
 
 `
 
-export default ({ children, popContent }) => {
-
-  let { popup, setPopup } = useTaskContext()
+export default ({ children, popContent, visiable, onToggle }) => {
 
   useEffect(() => {
     let clickHandle = () => {
-      setPopup(false)
+      onToggle(false)
     }
     document.addEventListener('click', clickHandle)
     return () => {
@@ -54,10 +51,10 @@ export default ({ children, popContent }) => {
 
   return (
     <Popup onClick={openPopup}>
-      <div onClick={() => setPopup(!popup)}>
+      <div onClick={() => onToggle(!visiable)}>
         {children}
       </div>
-      <PopupContent show={popup} pd="0 4px">
+      <PopupContent show={visiable} pd="0 4px">
         {popContent}
       </PopupContent>
     </Popup>

@@ -70,7 +70,7 @@ export default function Resource() {
 
   return (
     <Row>
-      <Popup popContent={renderPopContent}>
+      <Popup popContent={renderPopContent} visiable={popup} onToggle={setPopup}>
         <span onClick={() => setPopup(!popup)}>+ Specify Resources</span>
       </Popup>
       <Row mainAxis="flex-start" height="30px">
