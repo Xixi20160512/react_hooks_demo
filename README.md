@@ -1,44 +1,45 @@
-# Example app with Jest tests inside a NextJS TypeScript app
+# Task
 
-## How to use
+使用 typeScript + nextjs + react hooks + styled component 构建的应用
 
-### Using `create-next-app`
+## 兼容性
 
-Execute [`create-next-app`](https://github.com/segmentio/create-next-app) with [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) or [npx](https://github.com/zkat/npx#readme) to bootstrap the example:
+- ie9+
+- chrome
+- firefox
 
-```bash
-npx create-next-app --example with-jest-typescript with-jest-typescript-app
-# or
-yarn create next-app --example with-jest-typescript with-jest-typescript-app
-```
+## 开发+部署
 
-### Download manually
-
-Download the example:
-
-```bash
-curl https://codeload.github.com/zeit/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/with-jest-typescript
-cd with-jest-typescript
-```
-
-Install it and run:
-
-```bash
-npm install
-npm run dev
-# or
+``` bash
+# 安装依赖
 yarn
+
+# 本地开发
 yarn dev
-```
 
-## Run Jest tests
+#构建发布
+yarn build
 
-```bash
-npm run test
-# or
+#执行测试用例
 yarn test
 ```
 
-## The idea behind the example
+## 技术栈
 
-This example shows a configuration and several examples for a running Jest tests in a NextJS TypeScript app
+- [nextjs](https://github.com/zeit/next.js) - 基于 react 的同构框架，支持 ssr
+
+  主要使用 nextjs 的服务端渲染能力，但是这个框架目前仅[支持 ie9+](https://github.com/zeit/next.js/issues/3505#issuecomment-354128007)。
+
+- [react hooks](https://reactjs.org/docs/hooks-intro.html)
+
+  hooks 是 react 在 16.8 版本推出的 api，目的在于提供纯函数开发模式，摆脱对 Class 写法的依赖。结合 react 的 context API 使用能够很好的在复杂组件结构中进行数据共享。
+
+- [styled components](https://www.styled-components.com/) - 模块化 css 的另一种探索
+
+  styled components 目前是 react 生态中热门的模块化 css 解决方案。在这个 Demo 项目中，进行了一些基础组件的封装，包括 Container, Row, Column, Text 等。可以较方便的实现布局样式。
+
+  参考：[CSS Evolution](https://medium.com/@perezpriego7/css-evolution-from-css-sass-bem-css-modules-to-styled-components-d4c1da3a659b)
+
+- Type Script
+
+  编写大规模项目、可维护项目必备。
